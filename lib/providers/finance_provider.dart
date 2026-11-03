@@ -58,6 +58,8 @@ class FinanceProvider extends ChangeNotifier {
   }
 
   Future<void> loadData() async {
+    _transactions = [];
+    _budgets = [];
     _isLoading = true;
     _loadError = null;
 
@@ -184,4 +186,13 @@ class FinanceProvider extends ChangeNotifier {
     return date.year == month.year &&
         date.month == month.month;
   }
+
+  void clearData() {
+    _transactions = [];
+    _budgets = [];
+    _isLoading = false;
+    _loadError = null;
+    notifyListeners();
+  }
+
 }

@@ -19,6 +19,7 @@ dependencies:
   fl_chart: ^1.1.1
   http: ^1.6.0
   shared_preferences: ^2.5.5
+  cryptography: ^2.9.0
 
 dev_dependencies:
   flutter_test:

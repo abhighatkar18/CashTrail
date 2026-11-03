@@ -10,10 +10,35 @@ class AppDatabase {
   static final AppDatabase instance =
   AppDatabase._();
 
-  static const _databaseName = 'cashtrail.db';
+  int? _activeUserId;
+
+  String get _databaseName {
+    final userId = _activeUserId;
+
+    if (userId == null) {
+      throw StateError('Login is required.');
+    }
+
+    return 'cashtrail_user_$userId.db';
+  }
   static const _databaseVersion = 1;
 
   Database? _database;
+
+  Future<void> selectUser(int? userId) async {
+    if (_activeUserId == userId) return;
+
+    final oldDatabase = _database;
+    _database = null;
+    _activeUserId = null;
+
+    if (oldDatabase != null) {
+      await oldDatabase.close();
+    }
+
+    _activeUserId = userId;
+  }
+
 
   Future<Database> get database async {
     if (_database != null) return _database!;

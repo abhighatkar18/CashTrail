@@ -1,9 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/app_theme.dart';
 import 'providers/settings_provider.dart';
-import 'screens/main_shell.dart';
+import 'screens/auth_gate.dart';
 
 class CashTrailApp extends StatelessWidget {
   const CashTrailApp({super.key});
@@ -20,7 +21,7 @@ class CashTrailApp extends StatelessWidget {
           themeMode: settings.isDarkMode
               ? ThemeMode.dark
               : ThemeMode.light,
-          home: const MainShell(),
+          home: const AuthGate(),
         );
       },
     );
